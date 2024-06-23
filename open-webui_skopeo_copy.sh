@@ -16,6 +16,11 @@ echo "INFO: pulling quay.io/skopeo/stable..."
 docker pull quay.io/skopeo/stable
 echo -e "done\n"
 
+# cleanup
+echo "INFO: pruning images..."
+docker image prune -f
+echo -e "done\n"
+
 tag_manifest() {
   # get expected tag from first argument
   EXPECTED_TAG="${1}"
@@ -71,7 +76,7 @@ tag_manifest() {
     exit 1
   fi
 
-  # create the new manifest and push the manifest to docker hub
+  # copy image docker hub with all architectures
   echo -n "INFO: Copying image from ghcr and pushing to Docker Hub using skopeo..."
   docker run -t --rm \
     -u "$(id -u):$(id -g)" \
@@ -93,4 +98,5 @@ OPEN_WEBUI_RELEASES="$(wget -q -O - "https://api.github.com/repos/open-webui/ope
 
 # run multiple tags in parallel
 # shellcheck disable=SC2086
-env_parallel -j 4 tag_manifest ::: ${ALL_EXPECTED_TAGS}
+#env_parallel -j 4 tag_manifest ::: ${ALL_EXPECTED_TAGS}
+env_parallel -j 1 tag_manifest ::: ${ALL_EXPECTED_TAGS}
