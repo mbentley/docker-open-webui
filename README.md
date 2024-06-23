@@ -1,6 +1,6 @@
 # mbentley/open-webui
 
-docker image for Open WebUI,  direct mirrors of the `ghcr.io/open-webui/open-webui` images
+docker image for Open WebUI, direct mirrors of the `ghcr.io/open-webui/open-webui` images
 
 ## Image Tags
 
