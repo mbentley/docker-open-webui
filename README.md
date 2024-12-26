@@ -7,7 +7,7 @@ docker image for Open WebUI, direct mirrors of the `ghcr.io/open-webui/open-webu
 ### `mbentley/open-webui`
 
 * Daily updates:
-    * `0.4`, `0.3`, `0.2`, `0.1`
+    * `0.5`, `0.4`, `0.3`, `0.2`, `0.1`
     * `0`
 
 I've found that the Open WebUI images published to ghcr.io only have specific tags (e.g. - there are no `major.minor` tags) which makes it a pain to stay up to date on the latest bugfix versions.  [These scripts](./) will run daily to just create manifest tags for the `linux/amd64` images by querying for the latest tag from GitHub, parsing it, and writing manifests with the `major.minor` version only.
