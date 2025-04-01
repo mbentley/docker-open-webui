@@ -3,7 +3,7 @@
 set -e
 
 # set expected major.minor tags
-EXPECTED_MAJOR_MINOR_TAGS="0.1 0.2 0.3 0.4 0.5"
+EXPECTED_MAJOR_MINOR_TAGS="0.1 0.2 0.3 0.4 0.5 0.6"
 
 # set expected major tags from the major.minor list
 EXPECTED_MAJOR_TAGS="$(echo "${EXPECTED_MAJOR_MINOR_TAGS}" | tr " " "\n" | awk -F '.' '{print $1}' | sort -nu | xargs)"
@@ -98,4 +98,4 @@ OPEN_WEBUI_RELEASES="$(wget -q -O - "https://api.github.com/repos/open-webui/ope
 
 # run multiple tags in parallel
 # shellcheck disable=SC2086
-env_parallel -j 2 tag_manifest ::: ${ALL_EXPECTED_TAGS}
+env_parallel -j 3 tag_manifest ::: ${ALL_EXPECTED_TAGS}
