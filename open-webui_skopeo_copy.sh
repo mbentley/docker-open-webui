@@ -98,4 +98,4 @@ OPEN_WEBUI_RELEASES="$(wget -q -O - "https://api.github.com/repos/open-webui/ope
 
 # run multiple tags in parallel
 # shellcheck disable=SC2086
-env_parallel -j 2 tag_manifest ::: ${ALL_EXPECTED_TAGS}
+env_parallel --env tag_manifest --env OPEN_WEBUI_RELEASES --env ALL_EXPECTED_TAGS -j 2 tag_manifest ::: ${ALL_EXPECTED_TAGS}
